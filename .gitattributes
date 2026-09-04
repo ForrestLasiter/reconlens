@@ -1,0 +1,13 @@
+# Normalize line endings across Windows and Linux checkouts.
+* text=auto
+
+# Shell scripts and Docker/config files MUST stay LF, or they break in Linux
+# containers / bash.
+*.sh        text eol=lf
+*.py        text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+Dockerfile  text eol=lf
+
+# PowerShell is happiest with CRLF on Windows.
+*.ps1       text eol=crlf

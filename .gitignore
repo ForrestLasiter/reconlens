@@ -1,0 +1,25 @@
+# Local scope (contains YOUR assets — never commit)
+scope.yaml
+
+# Operator-local deploy helper (personal host details — never commit)
+deploy-my-instance.ps1
+
+# Runtime data
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
+
+# Local ntfy topic (private — a shared secret)
+.ntfy-topic.local

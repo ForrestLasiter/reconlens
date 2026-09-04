@@ -1,0 +1,20 @@
+services:
+  reconlens:
+    build: .
+    container_name: reconlens
+    ports:
+      - "8077:8077"
+    volumes:
+      # Your scope allowlist (read-only into the container).
+      - ./scope.yaml:/app/scope.yaml:ro
+      # SQLite DB + scan artifacts survive restarts.
+      - ./data:/app/data
+      # nuclei templates + PD tool config cache survive restarts.
+      - pd_home:/root
+    environment:
+      - RECONLENS_DB=/app/data/reconlens.db
+      - RECONLENS_SCOPE=/app/scope.yaml
+    restart: unless-stopped
+
+volumes:
+  pd_home:

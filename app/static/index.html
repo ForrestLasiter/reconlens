@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ReconLens</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">◈</span> ReconLens</div>
+    <div class="scope-bar" id="scopeBar">scope: <span class="muted">loading…</span></div>
+    <div class="run">
+      <select id="targetSelect"></select>
+      <select id="profileSelect" title="full = includes nuclei vuln scan">
+        <option value="full">full (+ nuclei)</option>
+        <option value="recon">recon only</option>
+      </select>
+      <button id="runBtn">▶ Scan</button>
+    </div>
+  </header>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <div class="sections">
+    <button class="section-btn active" data-section="outbound">🛰 Attack Surface <span class="sub">outbound</span></button>
+    <button class="section-btn" data-section="inbound">📡 Threat Radar <span class="sub">inbound</span></button>
+  </div>
+
+  <!-- OUTBOUND: what the internet sees of you -->
+  <div id="section-outbound">
+    <section class="cards" id="cards"></section>
+    <nav class="tabs">
+      <button data-tab="events" class="active">Drift / Timeline</button>
+      <button data-tab="findings">Findings</button>
+      <button data-tab="services">Services</button>
+      <button data-tab="inventory">IP Inventory</button>
+      <button data-tab="assets">Assets</button>
+      <button data-tab="scans">Scans</button>
+    </nav>
+    <main>
+      <div class="panel" id="tab-events"></div>
+      <div class="panel" id="tab-findings" hidden></div>
+      <div class="panel" id="tab-services" hidden></div>
+      <div class="panel" id="tab-inventory" hidden></div>
+      <div class="panel" id="tab-assets" hidden></div>
+      <div class="panel" id="tab-scans" hidden></div>
+    </main>
+  </div>
+
+  <!-- INBOUND: who is probing you -->
+  <div id="section-inbound" hidden>
+    <section class="cards" id="inbound-cards"></section>
+    <div id="inbound-banner" class="banner" hidden></div>
+    <main>
+      <div class="two-col">
+        <div class="col">
+          <h3 class="col-h">Top sources</h3>
+          <div id="inbound-sources" class="panel"></div>
+        </div>
+        <div class="col">
+          <h3 class="col-h">Targeted ports</h3>
+          <div id="inbound-ports" class="panel"></div>
+        </div>
+      </div>
+      <h3 class="col-h">Recent hits</h3>
+      <div id="inbound-feed" class="panel"></div>
+    </main>
+  </div>
+
+  <div id="drawer" class="drawer" hidden>
+    <div class="drawer-head">
+      <span id="drawerTitle">Scan</span>
+      <button id="drawerClose">✕</button>
+    </div>
+    <pre id="drawerLog" class="log"></pre>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

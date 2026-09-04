@@ -1,0 +1,33 @@
+# ReconLens scope allowlist
+# ==========================
+# This is the safety boundary. ReconLens REFUSES to scan anything not covered
+# here. Only list assets you own or are explicitly authorized to test.
+#
+# Copy this file to `scope.yaml` and fill in your real assets:
+#     cp scope.example.yaml scope.yaml
+#
+# `domains`  - root domains. Subfinder enumerates subdomains under each, and
+#              any discovered host must fall under one of these to be scanned.
+# `ips`      - individual IPv4 addresses you own.
+# `cidrs`    - CIDR ranges you own (e.g. your VPS block).
+#
+# A discovered host/IP is "in scope" if it matches a domain (or is a subdomain
+# of one), equals a listed IP, or falls inside a listed CIDR.
+
+domains:
+  - example.com          # <-- replace with a domain YOU own
+  # - vpn.example.org
+
+ips:
+  # - 203.0.113.10        # <-- your VPS public IP
+
+cidrs:
+  # - 203.0.113.0/24
+
+# Optional: ports naabu scans. Default is nuclei's top-100 if omitted.
+ports: "top-1000"
+
+# Optional: minimum nuclei severity to record. One of:
+#   info, low, medium, high, critical
+# 'info' is very noisy; default is 'low'.
+min_severity: low
